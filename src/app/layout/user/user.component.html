@@ -1,0 +1,41 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Usuários'" [icon]="'fa-user'"></app-page-header>
+
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card-body table-responsive">
+
+                <div class="row" style="margin-bottom: 50px">
+                    <button type="submit" class="btn btn-primary" title="Cadastrar novo usuário" [routerLink]="['/user/form']">
+                        <i class="fa fa-user-plus" style="margin-right: 10px"></i> Novo </button>
+                </div>
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Acesso</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users">
+                            <td>{{user.name}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.roles}}</td>
+                            <td style="cursor: pointer; font-size: 22px">
+                                <i class="fa fa-edit" title="Alterar Usuário" style="color: #0aaa3b" (click)="edit(user)"></i>
+
+                                <div class="btn btn-default" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                                    [popoverMessage]="popoverMessage" [confirmText]="confirmText" [cancelText]="cancelText"
+                                    placement="left" (confirm)="delete(user)">
+                                    <i class="fa fa-minus" title="Excluir Usuário" style="margin-left:15px; color: red"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

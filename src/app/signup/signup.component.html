@@ -1,0 +1,41 @@
+<div class="login-page" [@routerTransition]>
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+
+            <i class="fa fa-user" style="font-size: 45px"></i>
+            <h1>Novo usuário</h1>
+            <form #user="ngForm" (ngSubmit)="save(user)">
+                <div class="form-content">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-underline input-lg" name="name" #name="ngModel"
+                            [ngModel]="user.name" placeholder="Nome" maxlength="180" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" class="form-control input-underline input-lg" name="email" #email="ngModel"
+                            [ngModel]="user.email" placeholder="Email" maxlength="80" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control input-underline input-lg" name="username" #username="ngModel"
+                            [ngModel]="user.username" placeholder="Nome de usuário" maxlength="30" required
+                            (keydown.space)="$event.preventDefault()">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control input-underline input-lg" name="password" #password="ngModel"
+                            [ngModel]="user.password" placeholder="Senha" maxlength="20" required>
+                    </div>
+
+                    <div class="form-group">
+                        <select class="form-control input-underline input-lg" [ngModel]="originalObject" required>
+                            <option *ngFor="let role of roles" ng-trim [ngValue]="role" [selected]="role === role">{{role}}</option>
+                        </select>
+                    </div>
+
+                </div>
+                <button type="submit" class="btn rounded-btn"  [disabled]="!user.valid"> Salvar </button>&nbsp;
+            </form>
+        </div>
+    </div>
+</div>

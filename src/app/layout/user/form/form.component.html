@@ -1,0 +1,49 @@
+<div [@routerTransition]>
+  <app-page-header [heading]="'Novo usuário'" [icon]="'fa-user'"></app-page-header>
+
+  <div class="row">
+    <div class="col col-xl-12 col-lg-12">
+      <i class="fa fa-arrow-left" style="margin-left: 50px; font-size: 22px; cursor: pointer;" title="voltar" [routerLink]="['/user']"></i>
+    </div>
+  </div>
+
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+
+      <form #user="ngForm" (ngSubmit)="save(user)">
+        <div class="form-content">
+          <div class="form-group">
+            <input type="text" class="form-control input-underline input-lg" name="name" #name="ngModel" [(ngModel)]="inputName"
+              placeholder="Nome" maxlength="180" required>
+          </div>
+
+          <div class="form-group">
+            <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="form-control input-underline input-lg"
+              name="email" #email="ngModel" [(ngModel)]="inputEmail" placeholder="Email" maxlength="80" required>
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control input-underline input-lg" name="username" #username="ngModel"
+              [(ngModel)]="inputUsername" placeholder="Nome de usuário" maxlength="30" required (keydown.space)="$event.preventDefault()">
+          </div>
+
+          <div class="form-group">
+            <input type="password" class="form-control input-underline input-lg" name="password" #password="ngModel"
+              [(ngModel)]="inputPassword" placeholder="Senha" maxlength="20" required>
+          </div>
+
+          <div class="form-group">
+            <select class="form-control input-underline input-lg" name="role" #role="ngModel" [(ngModel)]="inputRole"
+              required>
+              <option *ngFor="let role of roles" ng-trim [ngValue]="role" [selected]="role == inputRole">{{role}}</option>
+            </select>
+          </div>
+
+          <input type="hidden" name="id" #id="ngModel" [(ngModel)]="inputId">
+
+        </div>
+        <button type="submit" class="btn rounded-btn" [disabled]="!user.valid"> Salvar </button>&nbsp;
+      </form>
+    </div>
+  </div>
+</div>
